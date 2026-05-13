@@ -1,0 +1,175 @@
+/* 1. THEME VARIABLES */
+:root {
+    --primary-green: #1a5e20;
+    --hover-green: #2e7d32;
+    --gold: #fbc02d;
+    --bg-light: #f8f9fa;
+    --text-dark: #333;
+}
+
+/* 2. GENERAL RESET & TYPOGRAPHY */
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    overflow-x: hidden; /* Prevents horizontal scroll on animations */
+}
+
+/* 3. GOVERNMENT TOP BAR */
+.gov-bar { 
+    background: #000; 
+    z-index: 1031;
+}
+
+/* 4. NAVIGATION & DROPDOWNS */
+.navbar {
+    padding: 0.8rem 0;
+}
+
+.nav-link {
+    transition: color 0.3s ease;
+}
+
+@media (min-width: 992px) {
+    .navbar .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0; /* Smooth transition */
+        animation: fadeIn 0.3s ease;
+    }
+}
+
+.dropdown-menu {
+    border-top: 3px solid var(--primary-green);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* 5. HERO SECTION & ANIMATIONS */
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), 
+                url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 75vh;
+}
+
+.animate-up { animation: fadeInUp 1s ease-out; }
+.animate-up-delayed { 
+    animation: fadeInUp 1s ease-out 0.3s forwards; 
+    opacity: 0; 
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 6. INTERACTIVE CARDS (MOUSE MOVE EFFECTS) */
+.mt-n5 { 
+    margin-top: -85px !important; /* Pulls cards over hero image */
+}
+
+.hover-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    background: #fff;
+}
+
+.hover-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+}
+
+.hover-card:hover .icon-circle {
+    background-color: var(--primary-green) !important;
+    color: #fff !important;
+    transform: rotate(360deg);
+}
+
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+}
+
+/* ACTIVE/FEATURED CARD */
+.active-card {
+    border-bottom: 5px solid var(--gold) !important;
+}
+
+/* 7. ACCORDION & UTILITIES */
+.accordion-button:not(.collapsed) {
+    background-color: var(--bg-light);
+    color: var(--primary-green);
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: rgba(0,0,0,.125);
+}
+
+/* IMAGE STACKS FOR UNIT SECTIONS */
+.img-stack {
+    position: relative;
+    padding: 10px;
+}
+
+.img-stack img {
+    position: relative;
+    z-index: 2;
+}
+
+.img-stack::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 100%;
+    height: 100%;
+    border: 5px solid var(--primary-green);
+    border-radius: 15px;
+    z-index: 1;
+}
+
+/* 8. FOOTER STYLES */
+footer {
+    border-top: 5px solid var(--gold);
+}
+
+footer a {
+    transition: all 0.3s ease;
+}
+
+footer a:hover { 
+    color: var(--gold) !important; 
+    padding-left: 5px;
+}
+
+/* 9. RESPONSIVE ADJUSTMENTS */
+@media (max-width: 768px) {
+    .hero-section { height: 60vh; }
+    .display-3 { font-size: 2.5rem; }
+    .mt-n5 { margin-top: 0 !important; } /* Reset overlap on mobile */
+    .img-stack::after { display: none; } /* Hide border decoration on small screens */
+}
+
+/* Increase spacing between menu items */
+.navbar-nav .nav-item {
+    margin: 0 8px; /* Adds space between the list items */
+}
+
+.navbar-nav .nav-link {
+    padding: 0.8rem 8px !important; /* Increases the internal "hit area" */
+    font-size: 0.95rem;
+    letter-spacing: 0.3px; /* Improves readability */
+    position: relative;
+    transition: all 0.3s ease;
+}
